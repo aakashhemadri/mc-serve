@@ -1,0 +1,63 @@
+version: "3"
+
+services:
+  mc-hardcore:
+    container_name: mc-harcore
+    image: itzg/minecraft-server
+    ports:
+      - "25565:25565"
+    volumes:
+      - "./mc/mc-hardcore:/data"
+      - "./assets:/data/assets"
+    environment:
+      OVERRIDE_SERVER_PROPERTIES: "true"
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+      INIT_MEMORY: "1G"
+      MAX_MEMORY: "4G"
+      SERVER_NAME: "mc-hardcore"
+      SERVER_PORT: 25565
+      MOTD: "[HARDCORE] ● 1.14.4\\nPlease, don't fall into lava"
+      TYPE: "VANILLA"
+      VERSION: "1.14.4"
+      OPS: "purplepant1es"
+      ICON: "/data/assets/icon.png"
+      MAX_PLAYERS: "5"
+      DIFFICULTY: "easy"
+      MODE: "hardcore"
+
+      VIEW_DISTANCE: 6
+      FORCE_GAMEMODE: "false"
+      ALLOW_NETHER: "false"
+      HARDCORE: "false"
+      SNOOPER_ENABLED: "false"
+      PVP: "false"
+      LEVEL_TYPE: "default"
+
+      SPAWN_PROTECTION: 0
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
+      ENABLE_COMMAND_BLOCK: "true"
+      GENERATE_STRUCTURES: "true"
+      MAX_BUILD_HEIGHT: 256
+      SPAWN_ANIMALS: "true"
+      SPAWN_MONSTERS: "true"
+      SPAWN_NPCS: "true"
+
+      CONSOLE: "false"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "testingpw"
+      RCON_PORT: 28016
+    restart: always
+  rcon:
+    container_name: "minecraft-rcon"
+    image: itzg/rcon
+    ports:
+      - "4326:4326"
+      - "4327:4327"
+    volumes:
+      - "rcon:/opt/rcon-web-admin/db"
+
+volumes:
+  minecraft-paper:
+  plugins:
+  rcon:
