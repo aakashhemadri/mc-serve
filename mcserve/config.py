@@ -7,6 +7,10 @@
 # You should have received a copy of the MIT License
 # along with this program. If not, see <https://choosealicense.com/licenses/mit/>.
 
+import re
+import os
+import sys
+
 from mcserve.globals import BSD, LINUX, MACOS, SUNOS
 from configparser import ConfigParser
 

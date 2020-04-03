@@ -18,16 +18,16 @@ class MCServeMain(object):
     usage = """
 Examples of use:
   Launch to create default standalone vanilla instance of minecraft on local machine.
-    $ mcserve
+    $ mcserve [ACTION/]
 
   Launch using custom config 
-    $ mcserve -c /path/to/config
+    $ mcserve -c /path/to/config [ACTION]
 
   Launch an existing pre-configured git repository. 
   (Configured based on the guidelines provided by mcserve)
-    $ mcserve --path /path/to/local/repository
-    $ mcserve --url_http http://github.com/aakashhemadri/minecraft-server.git
-    $ mcserve --url_ssh git@github.com:aakashhemadri/minecraft-server
+    $ mcserve --path /path/to/local/repository [ACTION]
+    $ mcserve --url_http http://github.com/aakashhemadri/minecraft-server.git [ACTION]
+    $ mcserve --url_ssh git@github.com:aakashhemadri/minecraft-server [ACTION]
 """
 
     def __init__(self):
@@ -45,7 +45,7 @@ Examples of use:
         )
         parser.add_argument('-v','--version',action='version', version=version)
         parser.add_argument('-c','--config',dest='conf_file',help='path to configuration file')
-        parser.add_argument('action',help='start/stop/log/exec docker-compose commands')
+        parser.add_argument('action',action='store',help='start/stop/log/exec docker-compose commands')
         parser.add_argument('--path',action='store',help='launch an existing pre-configured git repository. (local)')
         parser.add_argument('--url_http',action='store',help='launch an existing pre-configured git repository. (http)')
         parser.add_argument('--url_ssh',action='store',help='launch an existing pre-configured git repository. (ssh)')
@@ -54,9 +54,7 @@ Examples of use:
 
     def parse_args(self):
         args = self.init_args().parse_args()
-        if(args.conf_file != None):
-            self.config = Config(args.conf_file)
-            return args
+        self.config = Config(args.conf_file)
         return args
 
     def get_config(self):

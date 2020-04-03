@@ -15,16 +15,24 @@ class MCServe(object):
     
     def run(self):
         print("Initializing mc-serve")
+        if self.args.action == 'start':
+            self.start()
+        elif self.args.action == 'stop':
+            self.stop()
+        elif self.args.action == 'stop':
+            self.logs()
+        elif self.args.action == 'stop':
+            self.execute()
         print("bye bye")
     
     def execute(self):
-        pass
+        print("Executing command on minecraft-server instance")
     
     def start(self):
-        pass
+        print("Starting minecraft-server instance")
     
     def stop(self):
-        pass
+        print("Stopping minecraft-server instance")
 
     def logs(self):
-        pass
+        print("Following logs of the minecraft-server instance")

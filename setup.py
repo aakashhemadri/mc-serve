@@ -44,7 +44,6 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     data_files=get_data_files(),
     entry_points={"console_scripts": ['mcserve=mcserve:main']},
-
     classifiers=[
         'Environment :: Console :: Curses',
         'Intended Audience :: End Users/Desktop',
